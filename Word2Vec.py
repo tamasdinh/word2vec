@@ -145,7 +145,7 @@ def cosine_similarity(embedding, valid_size=16, valid_window=100, device='cpu'):
 
 
 #%%
-def train(model, train_words, int2word, epochs=5, learning_rate=0.003, print_every=500, device='cpu'):
+def train(model, train_words, int2word, device, epochs=5, learning_rate=0.003, print_every=500):
     """
     Implements training cycles for SkipGram model
     :param model: instantiated SkipGram model
@@ -253,7 +253,7 @@ def main():
     model = SkipGram(len(word2int), embedding_dim).to(device)
 
     # Training the model
-    model = train(model, train_words, int2word)
+    model = train(model, train_words, int2word, device)
 
     # Saving the model
     model_name = 'skipgram-simple_{}_{}.net'.format(datetime.today().date(), int(datetime.today().timestamp()))
